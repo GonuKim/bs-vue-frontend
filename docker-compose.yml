@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: vue_frontend_dev
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules  # 컨테이너 내부 node_modules 무시해서 충돌 방지
+    ports:
+      - "8080:8080"
+    working_dir: /usr/src/app
+    tty: true
+    stdin_open: true
+    command: /bin/sh  # 쉘 대기
